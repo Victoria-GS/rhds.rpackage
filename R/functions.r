@@ -10,13 +10,13 @@ extract.file <- function(tar.file, extract.file, new.file, resultsdir) {
   # get file path to extracted file
   x.file <-
     grep(extract.file,
-      untar(tar.file, list = T),
+      utils::untar(tar.file, list = T),
       value = T
     )
     
   # extract the tar file
   cat("Extracting", tar.file, "to", new.file, "\n")
-  untar(tar.file, exdir=resultsdir, extras="--no-same-owner")
+  utils::untar(tar.file, exdir=resultsdir, extras="--no-same-owner")
   x.file = file.path(resultsdir,x.file)
 
   # move the data to named output
@@ -33,7 +33,7 @@ extract.file <- function(tar.file, extract.file, new.file, resultsdir) {
 #' @export
 my.write.table <- function(x, filename) {
   cat("saving", basename(filename), "...\n")
-  write.table(x, file = filename, row.names = T, col.names = T, sep = "\t")
+  utils::write.table(x, file = filename, row.names = T, col.names = T, sep = "\t")
 }
 
 #' Extract participant ID from TCGA barcode
